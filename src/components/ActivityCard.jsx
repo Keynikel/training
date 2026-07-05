@@ -1,15 +1,11 @@
 import { CheckCircle2, ChevronDown } from 'lucide-react';
 import { useState } from 'react';
-import DifficultyDots from './DifficultyDots.jsx';
-import Rating from './Rating.jsx';
 import VideoPlayer from './VideoPlayer.jsx';
 
 export default function ActivityCard({
   activity,
   completed,
-  rating,
-  onToggleComplete,
-  onRate
+  onToggleComplete
 }) {
   const [expanded, setExpanded] = useState(false);
 
@@ -39,42 +35,6 @@ export default function ActivityCard({
           >
             <CheckCircle2 aria-hidden="true" className="h-5 w-5" />
           </button>
-        </div>
-
-        <div className="mt-4 flex flex-wrap items-center gap-2 text-sm">
-          <span className="rounded-lg bg-linen px-2.5 py-1 font-semibold text-space">
-            {activity.duration}
-          </span>
-          <span className="rounded-lg bg-mist px-2.5 py-1 font-semibold text-slate">
-            {activity.intensity}
-          </span>
-          {activity.tags.map((tag) => (
-            <span
-              key={tag}
-              className="rounded-lg border border-tan/45 px-2.5 py-1 text-xs font-semibold text-coffee"
-            >
-              {tag}
-            </span>
-          ))}
-        </div>
-
-        <div className="mt-5 grid gap-4 border-y border-space/10 py-4 sm:grid-cols-2">
-          <div>
-            <p className="mb-1 text-xs font-semibold uppercase tracking-[0.16em] text-slate">
-              Rating
-            </p>
-            <Rating
-              value={rating}
-              onChange={onRate}
-              label={`Rate ${activity.title}`}
-            />
-          </div>
-          <div>
-            <p className="mb-2 text-xs font-semibold uppercase tracking-[0.16em] text-slate">
-              Difficulty
-            </p>
-            <DifficultyDots value={activity.difficulty} />
-          </div>
         </div>
 
         {activity.hasVideo && <VideoPlayer videoUrl={activity.videoUrl} />}

@@ -10,7 +10,6 @@ import { useLocalStorage } from './hooks/useLocalStorage.js';
 const STORAGE_KEYS = {
   completed: 'second-trimester-completed',
   habits: 'second-trimester-habits',
-  ratings: 'second-trimester-ratings',
   selectedWeek: 'second-trimester-selected-week',
   selectedDay: 'second-trimester-selected-day'
 };
@@ -23,7 +22,6 @@ export default function App() {
     {}
   );
   const [habitChecks, setHabitChecks] = useLocalStorage(STORAGE_KEYS.habits, {});
-  const [ratings, setRatings] = useLocalStorage(STORAGE_KEYS.ratings, {});
 
   const todayRef = useRef(null);
 
@@ -52,14 +50,6 @@ export default function App() {
     }));
   }
 
-  function setActivityRating(activityId, rating) {
-    const key = activityKey(selectedWeekData.week, selectedDayData.day, activityId);
-    setRatings((current) => ({
-      ...current,
-      [key]: current[key] === rating ? 0 : rating
-    }));
-  }
-
   function toggleHabit(day, habitId) {
     const key = habitKey(selectedWeekData.week, day, habitId);
     setHabitChecks((current) => ({
@@ -69,9 +59,7 @@ export default function App() {
   }
 
   function resetProgress() {
-    const confirmed = window.confirm(
-      'Clear all saved progress, ratings, selected week, and selected day?'
-    );
+    const confirmed = window.confirm('Clear all saved progress, selected week, and selected day?');
 
     if (!confirmed) {
       return;
@@ -82,7 +70,6 @@ export default function App() {
     setSelectedDay('Monday');
     setCompletedActivities({});
     setHabitChecks({});
-    setRatings({});
   }
 
   return (
@@ -128,7 +115,7 @@ export default function App() {
         <SectionPanel
           eyebrow="Daily plan"
           title={`${selectedDayData.day}'s activities`}
-          description="Complete what fits your day, rate finished sessions, and open details when you want the longer note."
+          description="Complete what fits your day and open details when you want the longer note."
         >
           <div className="grid gap-5 lg:grid-cols-2">
             {selectedDayData.activities.filter((activity) => activity.hasVideo).map((activity) => {
@@ -138,9 +125,7 @@ export default function App() {
                   key={key}
                   activity={activity}
                   completed={Boolean(completedActivities[key])}
-                  rating={ratings[key] ?? 0}
                   onToggleComplete={() => toggleActivity(activity.id)}
-                  onRate={(rating) => setActivityRating(activity.id, rating)}
                 />
               );
             })}
