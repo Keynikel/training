@@ -1,0 +1,234 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  background: #f8f2ea;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.reference-strip {
+  background: #fff;
+  border: 1px solid rgba(37, 52, 79, 0.1);
+  border-radius: 0.75rem;
+  display: block;
+  font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+  margin: 0 auto;
+  max-width: 820px;
+  padding: 16px;
+}
+
+.reference-week {
+  min-width: 0;
+}
+
+.reference-selector-top {
+  align-items: flex-end;
+  display: flex;
+  gap: 16px;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.reference-selector-top p {
+  color: #6f4d38;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  line-height: 1;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.reference-selector-top h2 {
+  color: #25344f;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.25;
+  margin: 6px 0 0;
+}
+
+.reference-selector-top span {
+  color: #617891;
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.reference-week-header {
+  align-items: center;
+  display: flex;
+  gap: 18px;
+}
+
+.reference-week-header h3 {
+  color: #6f4d38;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1;
+  margin: 0;
+}
+
+.reference-arrow {
+  align-items: center;
+  background: transparent;
+  border: 1.5px solid #632024;
+  border-radius: 999px;
+  color: #632024;
+  display: inline-flex;
+  height: 30px;
+  justify-content: center;
+  padding: 0;
+  transition: opacity 160ms ease;
+  width: 30px;
+}
+
+.reference-arrow:disabled {
+  border-color: rgba(97, 120, 145, 0.25);
+  color: rgba(97, 120, 145, 0.35);
+  cursor: default;
+}
+
+.reference-arrow:not(:disabled):hover {
+  opacity: 0.72;
+}
+
+.reference-arrow svg {
+  height: 20px;
+  stroke-width: 1.2;
+  width: 20px;
+}
+
+.reference-days {
+  align-items: center;
+  display: flex;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.reference-day {
+  align-items: center;
+  background: transparent;
+  border: 0;
+  border-radius: 999px;
+  color: rgba(97, 120, 145, 0.38);
+  display: inline-flex;
+  font-size: 18px;
+  font-weight: 400;
+  height: 34px;
+  justify-content: center;
+  padding: 0;
+  transition:
+    background 160ms ease,
+    color 160ms ease;
+  width: 34px;
+}
+
+.reference-day.is-active {
+  background: #632024;
+  color: #fff;
+}
+
+.reference-day:not(.is-active):hover {
+  color: #6f4d38;
+}
+
+@media (max-width: 900px) {
+  .reference-strip {
+    padding: 16px;
+  }
+
+  .reference-week-header {
+    gap: 14px;
+  }
+
+  .reference-week-header h3 {
+    font-size: 17px;
+  }
+
+  .reference-days {
+    gap: 8px;
+  }
+
+  .reference-day {
+    font-size: 17px;
+    height: 32px;
+    width: 32px;
+  }
+
+}
+
+@media (max-width: 520px) {
+  .reference-selector-top {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .reference-week-header {
+    gap: 12px;
+  }
+
+  .reference-week-header h3 {
+    font-size: 16px;
+  }
+
+  .reference-arrow {
+    height: 28px;
+    width: 28px;
+  }
+
+  .reference-arrow svg {
+    height: 18px;
+    width: 18px;
+  }
+
+  .reference-days {
+    gap: 5px;
+  }
+
+  .reference-day {
+    font-size: 16px;
+    height: 30px;
+    width: 30px;
+  }
+}
+
+.scrollbar-soft {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(111, 77, 56, 0.45) transparent;
+}
+
+.scrollbar-soft::-webkit-scrollbar {
+  height: 0.55rem;
+}
+
+.scrollbar-soft::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.scrollbar-soft::-webkit-scrollbar-thumb {
+  background: rgba(111, 77, 56, 0.45);
+  border-radius: 999px;
+}
